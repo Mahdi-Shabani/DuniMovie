@@ -46,7 +46,7 @@ final dioProvider = Provider<Dio>((ref) {
 });
 ```
 
-مدل‌ها و نگاشت
+مدل‌ها 
 - lib/features/movies/data/models/movie_model.dart
 ```dart
 import '../../domain/entities/movie.dart';
