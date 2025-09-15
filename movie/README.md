@@ -3,7 +3,7 @@
 - معماری لایه‌ای (Data/Domain/Presentation) + MVVM در UI، مدیریت حالت با Riverpod، شبکه با Dio.
 - وب: به‌خاطر CORS تصویر پوسترها از طریق یک پراکسی عمومی بازنویسی می‌شوند.
 
-Tech stack و پکیج‌ها
+Tech stack  (پکیج‌ها)
 - Dio (شبکه)
 - Riverpod (State management)
 - SharedPreferences (لوکال Watchlist)
@@ -11,7 +11,7 @@ Tech stack و پکیج‌ها
 - Optional (Web): images.weserv.nl برای پروکسی تصویر
 
 ProviderScope در main
-- توجه: اپ باید داخل ProviderScope بالا بیاید تا Riverpod کار کند.
+- اپ باید داخل ProviderScope بالا بیاید تا Riverpod کار کند.
 
 اتصال به API (جست‌وجو)
 - Endpointها:
@@ -235,23 +235,3 @@ Watchlist کاملاً لوکال (SharedPreferences)
   - صفحه Watchlist: ref.watch(...) → لیست محلی؛ حذف با swipe یا آیکن سطل
   - Empty-state و ناوبری به جزئیات (در صورت نیاز) با id
 
-نکات پلتفرم
-- Android:
-  - android/app/src/main/AndroidManifest.xml → uses-permission INTERNET
-  - اگر پوستر http داشت (نادر): android:usesCleartextTraffic="true"
-- iOS:
-  - برای http (اگر داشت): ATS exception برای دامنه‌ها (اختیاری)
-- Web:
-  - CORS برای تصاویر را با webImageUrl حل کردیم؛ نیازی به فلگ --disable-web-security نیست.
-
-صفحه‌بندی و Debounce (اختیاری)
-- صفحه‌بندی: به searchResultsProvider پارامتر page بده و هنگام اسکرول نزدیک انتها page++ کن.
-- Debounce در سرچ: به جای Submit، onChanged + debounce 400–500ms و invalidate provider با query جدید.
-
-تست/پایداری
-- Search flow: ورودی → Loading → Data/Empty/Error
-- Watchlist: add/remove/clear و Sync نماد قلب
-- Web: صحت بارگذاری پوستر با پراکسی
-- Error handling: Timeout/No internet → نمایش پیام کاربرپسند
-
-اگر بخواهی، نسخه آماده‌ی Pagination/Infinite Scroll و Debounce را هم اضافه می‌کنم. همچنین صفحه‌ی جزئیات بر اساس id از API (GET /movies/{id}) را می‌شود به همین ساختار وصل کرد.
