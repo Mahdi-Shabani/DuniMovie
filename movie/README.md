@@ -185,21 +185,21 @@ final searchResultsProvider = FutureProvider.autoDispose.family<PagedResult<Movi
 ```
 - lib/features/search/presentation/pages/search_results_page.dart (استفاده)
 ```dart
-// در build:
+//  build:
 final async = ref.watch(searchResultsProvider(query));
 Expanded(
   child: async.when(
     loading: () => const RotatingAssetLoader(assetPath: 'assets/icons/Group0.png', size: 44),
     error: (e, _) => Center(child: Text('Error: $e', style: const TextStyle(color: Colors.white70))),
     data: (paged) {
-      if (paged.data.isEmpty) { /* ناوبری به NoResult یا نمایش Empty */ }
+      if (paged.data.isEmpty) { /* NoResult or  Empty */ }
       return ListView.separated(
         itemCount: paged.data.length,
         separatorBuilder: (_, __) => const SizedBox(height: 10),
         itemBuilder: (_, i) {
           final m = paged.data[i];
           return SearchResultCard(
-            imageUrl: m.poster, // روی وب با web_image_url
+            imageUrl: m.poster, //  web_image_url
             title: m.title,
             year: m.year,
             rating: m.imdbRating,
